@@ -1,0 +1,36 @@
+#container {
+    background-color: grey;
+}
+
+.toolbar  {
+    display: inline;
+}
+
+a
+{
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+a:hover
+{
+    color: blue;
+}
+
+p, h1, h2, h3, h4, h5, h6
+{
+    color: white;
+}
+
+th
+{
+    color: white;
+}
+
+tr
+{
+    color: white;
+}
