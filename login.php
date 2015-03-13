@@ -7,6 +7,9 @@
         <title></title>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <?php
         if (!isset($username)) {
             $username = '';
@@ -61,5 +64,7 @@
 
         </form>
         </div> 
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?>
     </body>
 </html>
