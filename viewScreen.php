@@ -30,6 +30,9 @@ $statement = $gateway->getScreenById($id);
         <title></title>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <div id ="container">
         <?php require 'toolbar.php' ?>
         <?php 
@@ -67,5 +70,7 @@ $statement = $gateway->getScreenById($id);
                 Delete Screen</a>
         </p>
         </div>
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?> 
     </body>
 </html>
