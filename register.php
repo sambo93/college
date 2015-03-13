@@ -7,6 +7,9 @@
         <title></title>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <div id="container">
         <form id="registerForm" 
               action="checkRegister.php" 
@@ -70,5 +73,7 @@
         </form>
         <script type="text/javascript" src="js/register.js"></script>
         </div>
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?>
     </body>
 </html>
