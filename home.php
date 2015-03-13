@@ -21,8 +21,13 @@ $statement = $gateway->getScreens();
         <title></title>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <img src ="images/cinema.jpg" alt="Logo">
          <?php require 'toolbar.php' ?>
         <p>Home Page</p>
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?>
     </body>
 </html>
