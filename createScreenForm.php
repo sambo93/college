@@ -16,6 +16,9 @@ require 'ensureUserLoggedIn.php';
         <script type="text/javascript" src="js/screen.js"></script>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <div id="container">
         <?php require 'toolbar.php' ?>
         <h1>Create Screen Information Form</h1>
@@ -69,5 +72,7 @@ require 'ensureUserLoggedIn.php';
 
         </form>
         </div>
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?>
     </body>
 </html>
