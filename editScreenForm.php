@@ -34,6 +34,9 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
         <script type="text/javascript" src="js/screen.js"></script>
     </head>
     <body>
+        <?php require "toolbar.php" ?>
+        <?php require "header.php" ?>
+        <?php require "mainMenu.php" ?>
         <div id="container">
         <?php require 'toolbar.php' ?>
         <h1>Edit Screen Form</h1>
@@ -129,5 +132,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         </form>
         </div>
+        <?php require "footer.php" ?>
+        <?php require "scripts.php" ?>
     </body>
 </html>
