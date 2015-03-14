@@ -17,6 +17,7 @@ $id = $_GET['id'];
 
 $connection = Connection::getInstance();
 $gateway = new ScreenTableGateway($connection);
+$movieGateway = new MovieTableGateway($connection);
 
 $statement = $gateway->getScreenById($id);
 if ($statement->rowCount() !== 1) {
@@ -121,6 +122,25 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                             </span>
                         </td>
                     </tr>
+                    <tr>
+                            <td>Movie</td>
+                            <td>
+                                <select name="movieID">
+                                    <option value="-1">No movie</option>
+                                    <?php
+                                    $m = $movies->fetch(PDO::FETCH_ASSOC);
+                                    while ($m) {
+                                        $selected = "";
+                                    }
+                                        if ($m['id'] == $programmer['movieID']) {
+                                            $selected = "selected";
+                                        echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
+                                        $m = $movies->fetch(PDO::FETCH_ASSOC);
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
                     <tr>
                         <td></td>
                         <td>
