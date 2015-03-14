@@ -1,10 +1,18 @@
 <?php
+require_once 'Connection.php';
+require_once 'movieTableGateway.php';
+
 $id = session_id();
 if ($id == "") {
     session_start();
 }
 
 require 'ensureUserLoggedIn.php';
+
+$conn = Connection::getInstance();
+$movieGateway = new MovieTableGateway($conn);
+
+$movies = $movieGateway->getMovies();
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,6 +69,21 @@ require 'ensureUserLoggedIn.php';
                             <span id="projectorError" class="error"></span>
                         </td>
                     </tr>
+                    <tr>
+                            <td>Movie</td>
+                            <td>
+                                <select name="movieID">
+                                    <option value="-1">No manager</option>
+                                    <?php
+                                    $m = $movies->fetch(PDO::FETCH_ASSOC);
+                                    while ($m) {
+                                        echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
+                                        $m = $movies->fetch(PDO::FETCH_ASSOC);
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
                     <tr>
                         <td></td>
                         <td>
