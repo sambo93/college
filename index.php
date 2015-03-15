@@ -1,3 +1,6 @@
+<?php
+//stefans page
+?>
 <!DOCTYPE html>
 <html>
     <head>
