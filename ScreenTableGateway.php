@@ -11,6 +11,9 @@ class ScreenTableGateway {
     
     public function getScreens() {
         //executes query to get screens
+        //"SELECT p.*, m.name AS managerName
+               //  FROM programmers p
+               //  LEFT JOIN managers m ON m.id = p.manager_id";
         $sqlQuery = "SELECT * FROM screen";
         
         $statement = $this->connection->prepare($sqlQuery);
@@ -24,9 +27,32 @@ class ScreenTableGateway {
         
     }
     
+    /*public function getScreenByMovieId($moviesID) {
+        // execute a query to get all screens
+        $sqlQuery =
+                "SELECT s.*, m.title AS movieID
+                 FROM screen s
+                 LEFT JOIN movies m ON m.id = s.movieID
+                 WHERE s.movieID = :movieID";
+        $params = array(
+            'movieID' => $movieID
+        );
+        $statement = $this->connection->prepare($sqlQuery);
+        $status = $statement->execute($params);
+        if (!$status) {
+            die("Could not retrieve screens");
+        }
+        return $statement;
+    }*/
+    
      public function getScreenById($screenID) {
         // execute a query to get the user with the specified id
         $sqlQuery = "SELECT * FROM screen WHERE screenID = :screenID";
+       /* $sqlQuery =
+                "SELECT s.*, m.title AS movieID
+                 FROM screen s
+                 LEFT JOIN movies m ON m.id = s.movieID
+                 WHERE s.id = :id";*/
         
         $statement = $this->connection->prepare($sqlQuery);
         $params = array(
@@ -36,7 +62,7 @@ class ScreenTableGateway {
         $status = $statement->execute($params);
         
         if (!$status) {
-            die("Could not retrieve user");
+            die("Could not retrieve screen");
         }
         
         return $statement;
@@ -84,13 +110,14 @@ class ScreenTableGateway {
         return ($statement->rowCount() == 1);
     }
     
-    public function updateScreen($id, $s, $f, $se, $pr) {
+    public function updateScreen($id, $s, $f, $se, $pr, $mId) {
         $sqlQuery =
                 "UPDATE screen SET " .
                 "screenNumber = :screenNumber, " .
                 "noOfFireExits = :noOfFireExits, " .
                 "noOfSeats = :noOfSeats, " .
                 "projectorType = :projectorType " .
+                "movieID = :movieID " .
                 "WHERE screenID = :screenID";
 
         $statement = $this->connection->prepare($sqlQuery);
@@ -100,6 +127,7 @@ class ScreenTableGateway {
             "noOfFireExits" => $f,
             "noOfSeats" => $se,
             "projectorType" => $pr,
+            "movieID" => $mId
         );
         
         /*echo '<pre>';
