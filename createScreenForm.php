@@ -87,21 +87,6 @@ $movies = $movieGateway->getMovies();
                         </td>
                     </tr>
                     <tr>
-                            <td>Movie</td>
-                            <td>
-                                <select name="movieID">
-                                    <option value="-1">No manager</option>
-                                    <?php
-                                    $m = $movies->fetch(PDO::FETCH_ASSOC);
-                                    while ($m) {
-                                        echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
-                                        $m = $movies->fetch(PDO::FETCH_ASSOC);
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                    <tr>
                         <td></td>
                         <td>
                             <input type="submit" value="Create Screen" name="createScreen" />
