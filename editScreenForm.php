@@ -1,7 +1,7 @@
 <?php
-require_once 'Screen.php';
 require_once 'Connection.php';
-require_once 'ScreenTableGateway.php';
+require_once 'ScrenTableGateway.php';
+require_once 'MovieTableGateway.php';
 
 $id = session_id();
 if ($id == "") {
@@ -19,11 +19,13 @@ $connection = Connection::getInstance();
 $gateway = new ScreenTableGateway($connection);
 $movieGateway = new MovieTableGateway($connection);
 
-$statement = $gateway->getScreenById($id);
-if ($statement->rowCount() !== 1) {
+$screen = $gateway->getScreenById($id);
+if ($screens->rowCount() !== 1) {
     die("Illegal request");
 }
-$row = $statement->fetch(PDO::FETCH_ASSOC);
+$screens = $screens->fetch(PDO::FETCH_ASSOC);
+
+$movies = $movieGateway->getManagers();
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +41,6 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
         <?php require "header.php" ?>
         <?php require "mainMenu.php" ?>
         <div id="container">
-        <?php require 'toolbar.php' ?>
         <h1>Edit Screen Form</h1>
         <?php
         if (isset($errorMessage)) {
@@ -57,7 +58,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                                 if (isset($_POST) && isset($_POST['screenNumber'])) {
                                     echo $_POST['screenNumber'];
                                 }
-                                else echo $row['screenNumber'];
+                                else echo $screen['screenNumber'];
                             ?>" />
                             <span id="screenNumberError" class="error">
                                 <?php
@@ -75,7 +76,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                                 if (isset($_POST) && isset($_POST['noOfFireExits'])) {
                                     echo $_POST['noOfFireExits'];
                                 }
-                                else echo $row['noOfFireExits'];
+                                else echo $screen['noOfFireExits'];
                             ?>" />
                             <span id="fireExitsError" class="error">
                                 <?php
@@ -93,7 +94,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                                 if (isset($_POST) && isset($_POST['noOfSeats'])) {
                                     echo $_POST['noOfSeats'];
                                 }
-                                else echo $row['noOfSeats'];
+                                else echo $screen['noOfSeats'];
                             ?>" />
                             <span id="seatsError" class="error">
                                 <?php
@@ -111,7 +112,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                                 if (isset($_POST) && isset($_POST['projectorType'])) {
                                     echo $_POST['projectorType'];
                                 }
-                                else echo $row['projectorType'];
+                                else echo $screen['projectorType'];
                             ?>" />
                             <span id="projectorTypeError" class="error">
                                 <?php
@@ -132,7 +133,7 @@ $row = $statement->fetch(PDO::FETCH_ASSOC);
                                     while ($m) {
                                         $selected = "";
                                     }
-                                        if ($m['id'] == $programmer['movieID']) {
+                                        if ($m['id'] == $screen['movieID']) {
                                             $selected = "selected";
                                         echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
                                         $m = $movies->fetch(PDO::FETCH_ASSOC);
