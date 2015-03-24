@@ -3,7 +3,7 @@ require_once 'Connection.php';
 require_once 'movieTableGateway.php';
 require 'ensureUserLoggedIn.php';
 $connection = Connection::getInstance();
-$movieGateway = new movieTableGateway($connection);
+$movieGateway = new MovieTableGateway($connection);
 $movies = $movieGateway->getMovies();
 ?>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@ $movies = $movieGateway->getMovies();
                 </thead>
                 <tbody>
                     <?php
-                    $row = $movie->fetch(PDO::FETCH_ASSOC);
+                    $row = $movies->fetch(PDO::FETCH_ASSOC);
                     while ($row) {
                         echo '<td>' . $row['title'] . '</td>';
                         echo '<td>' . $row['yearOfRelease'] . '</td>';
@@ -48,7 +48,7 @@ $movies = $movieGateway->getMovies();
                         . '<a class="deleteMovie" href="deleteMovie.php?id='.$row['id'].'">Delete</a> '
                         . '</td>';
                         echo '</tr>';
-                        $row = $movie->fetch(PDO::FETCH_ASSOC);
+                        $row = $movies->fetch(PDO::FETCH_ASSOC);
                     }
                     ?>
                 </tbody>
