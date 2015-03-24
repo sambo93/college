@@ -23,10 +23,7 @@ $screenNumber  = filter_input(INPUT_POST, 'screenNumber',      FILTER_SANITIZE_N
 $noOfFireExits = filter_input(INPUT_POST, 'noOfFireExits',      FILTER_SANITIZE_NUMBER_INT);
 $noOfSeats = filter_input(INPUT_POST, 'noOfSeats',      FILTER_SANITIZE_NUMBER_INT);
 $projectorType = filter_input(INPUT_POST, 'projectorType',      FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$movieID = filter_input(INPUT_POST, 'movieID',      FILTER_SANITIZE_NUMBER_INT);
-if ($movieID == -1) {
-    $movieID = NULL;
-}
+
 
 $id = $gateway->insertScreen($screenNumber, $noOfFireExits, $noOfSeats, $projectorType);
 
