@@ -116,7 +116,6 @@ class ScreenTableGateway {
                 "noOfFireExits = :noOfFireExits, " .
                 "noOfSeats = :noOfSeats, " .
                 "projectorType = :projectorType " .
-                "movieID = :movieID " .
                 "WHERE screenID = :screenID";
 
         $statement = $this->connection->prepare($sqlQuery);
@@ -125,8 +124,7 @@ class ScreenTableGateway {
             "screenNumber" => $s,
             "noOfFireExits" => $f,
             "noOfSeats" => $se,
-            "projectorType" => $pr,
-            "movieID" => $mId
+            "projectorType" => $pr
         );
         
         /*echo '<pre>';
