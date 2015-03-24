@@ -68,18 +68,17 @@ class ScreenTableGateway {
         return $statement;
     }
     
-    public function insertScreen($s, $f, $se, $pr, $mId) {
+    public function insertScreen($s, $f, $se, $pr) {
         $sqlQuery = "INSERT INTO screen " .
-                "(screenNumber, noOfFireExits, noOfSeats, projectorType, movieID) " .
-                "VALUES (:screenNumber, :noOfFireExits, :noOfSeats, :projectorType, :movieID)";
+                "(screenNumber, noOfFireExits, noOfSeats, projectorType) " .
+                "VALUES (:screenNumber, :noOfFireExits, :noOfSeats, :projectorType)";
         
         $statement = $this->connection->prepare($sqlQuery);
         $params = array(
             "screenNumber" => $s,
             "noOfFireExits" => $f,
             "noOfSeats" => $se,
-            "projectorType" => $pr,
-            "movieID" => $mId
+            "projectorType" => $pr
         );
         
         $status = $statement->execute($params);
