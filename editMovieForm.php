@@ -142,19 +142,19 @@ $movies = $movieGateway->getMovies();
                         </td>
                     </tr>
                     <tr>
-                            <td>Movie</td>
+                          <td>Screen</td>
                             <td>
-                                <select name="movieID">
-                                    <option value="-1">No movie</option>
+                                <select name="screenID">
+                                    <option value="-1">No screen</option>
                                     <?php
-                                    $m = $movies->fetch(PDO::FETCH_ASSOC);
-                                    while ($m) {
+                                    $id= $screen->fetch(PDO::FETCH_ASSOC);
+                                    while ($id) {
                                         $selected = "";
                                     }
-                                        if ($m['id'] == $movies['movieID']) {
+                                        if ($id['id'] == $screen['screenID']) {
                                             $selected = "selected";
-                                        echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
-                                        $m = $movies->fetch(PDO::FETCH_ASSOC);
+                                        echo '<option value="' . $id['id'] . '">' . $id['title'] . '</option>';
+                                        $id = $screen->fetch(PDO::FETCH_ASSOC);
                                     }
                                     ?>
                                 </select>
