@@ -1,6 +1,6 @@
 <?php
 require_once 'Connection.php';
-require_once 'ScrenTableGateway.php';
+require_once 'ScreenTableGateway.php';
 require_once 'MovieTableGateway.php';
 
 $id = session_id();
@@ -19,13 +19,13 @@ $connection = Connection::getInstance();
 $gateway = new ScreenTableGateway($connection);
 $movieGateway = new MovieTableGateway($connection);
 
-$screen = $gateway->getScreenById($id);
+$screens = $gateway->getScreenById($id);
 if ($screens->rowCount() !== 1) {
     die("Illegal request");
 }
-$screens = $screens->fetch(PDO::FETCH_ASSOC);
+$screen = $screens->fetch(PDO::FETCH_ASSOC);
 
-$movies = $movieGateway->getManagers();
+$movies = $movieGateway->getMovies();
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,25 +123,6 @@ $movies = $movieGateway->getManagers();
                             </span>
                         </td>
                     </tr>
-                    <tr>
-                            <td>Movie</td>
-                            <td>
-                                <select name="movieID">
-                                    <option value="-1">No movie</option>
-                                    <?php
-                                    $m = $movies->fetch(PDO::FETCH_ASSOC);
-                                    while ($m) {
-                                        $selected = "";
-                                    }
-                                        if ($m['id'] == $screen['movieID']) {
-                                            $selected = "selected";
-                                        echo '<option value="' . $m['id'] . '">' . $m['title'] . '</option>';
-                                        $m = $movies->fetch(PDO::FETCH_ASSOC);
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
                     <tr>
                         <td></td>
                         <td>
